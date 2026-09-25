@@ -33,8 +33,8 @@
       --footer-bg: #212220;
       --ink: #EDE9DF;
       --ink-soft: #B3AC9C;
-      --accent: #c58585;
-      --accent-soft: #a09ec5;
+      --accent: #8FAE97;
+      --accent-soft: #6F8D77;
       --line: #37372F;
       --overlay: 27, 28, 25;
     }
@@ -166,6 +166,7 @@
     display: flex;
     align-items: flex-end;
     justify-content: center;
+    padding-bottom: 6vh; /* raise the portrait off the bottom edge — increase to move it up further */
     overflow: hidden;
     pointer-events: none;
   }
@@ -641,14 +642,20 @@
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduceMotion) return;
 
-  var rate = 0.18;   // fraction of scroll speed the portrait drifts at
-  var maxShift = 90; // px, keeps it from drifting out of frame
+  var rate = 0.18;   // fraction of scroll speed the portrait eases in at
+  var maxShift = 90; // px, starting offset below its flush position
+
+  // The portrait starts maxShift below "flush" with the container's bottom edge,
+  // then eases up to flush as the page scrolls, and stays flush afterwards.
+  // Going the other direction (photo drifting further up/away from flush)
+  // pulls its bottom edge above the container's, which exposes a gap
+  // between the photo and the content layer sliding up beneath it.
   var ticking = false;
 
   function update() {
     var y = window.scrollY || window.pageYOffset || 0;
-    var shift = Math.min(y * rate, maxShift);
-    midPhoto.style.transform = 'translateY(' + (-shift) + 'px)';
+    var shift = Math.max(maxShift - y * rate, 0);
+    midPhoto.style.transform = 'translateY(' + shift + 'px)';
     ticking = false;
   }
 
