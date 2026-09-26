@@ -531,18 +531,27 @@
   }
 
   .project-gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 2.2em;
     margin-bottom: 3em;
   }
   .gallery-item {
     position: relative;
+    width: 100%;
     aspect-ratio: 4 / 3;
-    border-radius: 10px;
+    border-radius: 14px;
     overflow: hidden;
   }
   .gallery-item .art { position: absolute; inset: 0; opacity: 1; }
+  .art img, .art video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
 
   .back-link {
     display: inline-block;
@@ -621,20 +630,22 @@
 <main class="project-detail">
 
   <!--
-    PHOTOS: drop files into the images/ folder with these exact names and they'll
-    appear automatically — no code edits needed:
+    PHOTOS & VIDEO: drop files into the images/ folder with these exact names
+    and they'll appear automatically — no code edits needed:
       images/project-1-hero.png       (big banner image below)
       images/project-1-photo-1.png    (gallery photo 1)
       images/project-1-photo-2.png    (gallery photo 2)
       images/project-1-photo-3.png    (gallery photo 3)
-    Until a photo exists, a color placeholder shows instead. See images/README.txt.
+      images/project-1-photo-4.png    (gallery photo 4)
+      images/project-1-video-1.mp4    (gallery video)
+    Until a file exists, a color placeholder shows instead. See images/README.txt.
   -->
 
   <h1>Mini PacMan</h1>
   <div class="meta-line"></div>
 
   <div class="project-hero">
-    <div class="art art-1"><img src="images/project-1-hero.png" alt="Project One hero image" onerror="this.remove()"></div>
+    <div class="art art-1"><img src="images/project-1-hero.png" alt="Project One hero image" onerror="this.remove()"style="object-position: 50% 90%;"></div>
   </div>
 
   <section class="proj-section">
@@ -650,7 +661,7 @@
     <h2>Hardware</h2>
     <p class="credit-list">
       <li><a href="https://www.st.com/en/microcontrollers-microprocessors/stm32l476rg.html" target="_blank" rel="noopener" style="color: #8FAE97">STM32L476RG </a>Microcontroller</li>
-      cMini OLED Display- Any Ordinary 128x64 display</li>
+      <li>Mini OLED Display- Any Ordinary 128x64 display</li>
       <li>Small breadboard compatible speaker</li>
       <li>Dual-Axis Joystick</li>
     </p>
@@ -669,42 +680,74 @@
   <section class="proj-section">
     <h2>Firmware</h2>
     <p class="body-copy">
-      The most important task was to use STM32Cube IDE configure the correct MCU bits. 
-      A lot of thought was put into the logic of how PacMan would move and change update the display
+      The most important task was to using STM32Cube IDE to configure the correct MCU bits. 
+      And the backbone of the entire code is spent manipulating and referencing a 128 x 64 matrix. 
+      A lot of thought was put into the logic of how PacMan would move and change update 
+      the display, but the general design could be summed into: <br><br>
+       Initialization and play music &#8658; Get direction from joystick &#8658; 
+       Update the matrix/filter the Direction &#8658; Display Changes (if any) &#8658; loop back to joystick
     </p>
     <div class="project-gallery">
       <div class="gallery-step">
+        <h2>Main Function</h2>
         <div class="gallery-item"><div class="art art-1"><img src="images/project-1-photo-1.png" alt="Project One photo 1" onerror="this.remove()"></div></div>
-        <p class="step-caption">Explain what this photo shows.</p>
+        <p class="step-caption">This initializes, shows title screen, and plays the music,
+           then the function runs the systick loop. Taking in the 
+           buffer data and checks for if it is valid or not. 
+           PacMan's position is checked updates the matrix and displays it. 
+           Also the joystick button is used as a reset and can increase the speed.</p>
       </div>
       <div class="gallery-step">
+        <h2>Joycon Function</h2>
         <div class="gallery-item"><div class="art art-1"><img src="images/project-1-photo-2.png" alt="Project One photo 2" onerror="this.remove()"></div></div>
-        <p class="step-caption">Explain what this photo shows.</p>
+        <p class="step-caption">Takes in X and Y positions for the buffer. 
+          Determines the quadrant the position is in, then outputs the quadrant as a direction.</p>
       </div>
       <div class="gallery-step">
+        <h2>Movement Check Function</h2>
         <div class="gallery-item"><div class="art art-1"><img src="images/project-1-photo-3.png" alt="Project One photo 3" onerror="this.remove()"></div></div>
-        <p class="step-caption">Explain what this photo shows.</p>
+        <p class="step-caption">Takes in a direction along with and overhead matrix and 
+          fixes x and y coordinates referencing off of the inputted direction value 
+          mapping onto the matrix. Filters [All] edge cases for PacMan's eligibily 
+          for movement increasing the score if on pellet and outputting a direction if allowed.</p>
       </div>
       <div class="gallery-step">
+        <h2>Display Function</h2>
         <div class="gallery-item"><div class="art art-1"><img src="images/project-1-photo-4.png" alt="Project One photo 3" onerror="this.remove()"></div></div>
-        <p class="step-caption">Explain what this photo shows.</p>
+        <p class="step-caption">Displays PacMan's new position based off of the values given by the
+          movement check function and updates pellet counter. This is all done atop the OLED display
+        and contains differign cases for differing directions given.</p>
+      </div>
+      <div class="gallery-step">
+        <h2>The Matrix</h2>
+        <div class="gallery-item"><div class="art art-1"><img src="images/project-1-photo-5.png" alt="Project One photo 3" onerror="this.remove()"></div></div>
+        <p class="step-caption">This is the 128 x 64 Matrix.</p>
+      </div>
+    </div><br>
+    <ul class="credit-list">
+      <li>All of the code is posted on my github <a href="https://github.com/Baaazil/Mini-PacMan-Project" target="_blank" rel="noopener">Here</a></li>
+    </ul>
+  </section>
+
+  <section class="proj-section">
+    <h2>Demo</h2>
+      <div class="gallery-step">
+        <div class="gallery-item"><div class="art art-1"><video src="images/project-1-video-1.mp4" controls playsinline preload="metadata" onerror="this.remove()"style="object-position: 50% 10%;">Your browser doesn't support embedded video.</video></div></div>
+        <p class="step-caption">Here is the finished demo of the PacMan project.</p>
       </div>
     </div>
   </section>
 
   <section class="proj-section">
-    <h2>Overview</h2>
-    <p class="body-copy">
-      Write a broader overview of the finished project here — what it does, the stack or
-      tools used, and your role in building it.
-    </p>
-  </section>
-
-  <section class="proj-section">
     <h2>Inspiration &amp; Credit</h2>
     <ul class="credit-list">
-      <li><a href="#" target="_blank" rel="noopener">Link title</a> — briefly say what this was and why it's credited.</li>
-      <li><a href="#" target="_blank" rel="noopener">Link title</a> — briefly say what this was and why it's credited.</li>
+    <p class="body-copy">
+      A lot of credit goes out to my amazing partner. Without their help this project would have many 
+      times harder to acheive. I credit their work on the Display Function, the Joycon Function, and 
+      all the accumulative sweat and tears we both shed on the other functions. I'm fortunate to have
+      worked with someone so helpful and positive. 
+    </p>
+      <li><a href="STM32L476RG Datasheet.html" target="_blank" rel="noopener">STM32L476RG Datasheet</a> — This datasheet is required for everything STM32.</li>
       <li><a href="#" target="_blank" rel="noopener">Link title</a> — briefly say what this was and why it's credited.</li>
     </ul>
   </section>
