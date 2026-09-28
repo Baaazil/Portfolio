@@ -645,7 +645,7 @@
   <div class="meta-line"></div>
 
   <div class="project-hero">
-    <div class="art art-1"><img src="images/project-1-hero.png" alt="Project One hero image" onerror="this.remove()"style="object-position: 50% 90%;"></div>
+    <div class="art art-1"><img src="images/project-1-hero.png" alt="Project One hero image" onerror="this.remove() "style="object-position: 50% 90%;"></div>
   </div>
 
   <section class="proj-section">
@@ -681,8 +681,8 @@
     <h2>Firmware</h2>
     <p class="body-copy">
       The most important task was to using STM32Cube IDE to configure the correct MCU bits. 
-      And the backbone of the entire code is spent manipulating and referencing a 128 x 64 matrix. 
-      A lot of thought was put into the logic of how PacMan would move and change update 
+      And the backbone of the entire code is spent manipulating and referencing a<br> 128 x 64 matrix. 
+      A lot of thought was put into the logic of how PacMan would move and update 
       the display, but the general design could be summed into: <br><br>
        Initialization and play music &#8658; Get direction from joystick &#8658; 
        Update the matrix/filter the Direction &#8658; Display Changes (if any) &#8658; loop back to joystick
@@ -731,10 +731,8 @@
 
   <section class="proj-section">
     <h2>Demo</h2>
-      
-      <div class="gallery-item"><div class="art art-1"><video src="images/project-1-video-1.mp4" controls playsinline preload="metadata" onerror="this.remove() "style="object-position: 50% 10%;">Your browser doesn't support embedded video.</video></div></div>
+      <div class="gallery-item"><div class="art art-1"><video src="images/project-1-video-1.MP4" controls playsinline preload="metadata" onerror="this.remove() "style="object-position: 50% 10%;">Your browser doesn't support embedded video.</video></div></div>
       <p class="step-caption">Here is the finished demo of the PacMan project.</p>
-      
     </div>
   </section>
 
@@ -748,7 +746,9 @@
       worked with someone so helpful and positive. 
     </p>
       <li><a href="STM32L476RG Datasheet.html" target="_blank" rel="noopener">STM32L476RG Datasheet</a> — This datasheet is required for everything.</li>
+      <li></a> Of course the most important credit is given to Namco, the original developers of <a href="https://en.wikipedia.org/wiki/Pac-Man" target="_blank" rel="noopener">PacMan</li>
     </ul>
+    
   </section>
 
   <a class="back-link" href="index.html">&larr; Back to all projects</a>
