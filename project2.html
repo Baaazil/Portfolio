@@ -650,8 +650,8 @@
     <h2>Goal</h2>
     <p class="body-copy">
       I was conversing with my brother on projects I could make over the summer and my brother suggested
-      making a transit display. And as he lives in San Franscisco and often uses the BART transit service
-      I found myself wanting to make a mini transit arrival display. 
+      making a transit display. And as he lives in San Franscisco and often uses the BART service
+      I found myself wanting to make a mini transit arrival display for his station. 
     </p>
   </section>
 
@@ -659,16 +659,33 @@
     <h2>Hardware</h2>
     <p class="credit-list">
       <li><a href="https://www.buydisplay.com/spi-white-20x4-character-oled-display-module-for-arduino-raspberry-pi" target="_blank" rel="noopener" style="color: #8FAE97">20x4 OLED Display</a> being a very visually clean display.</li>
-      <li>A 5V to 3.3V logic converter for prototyping.</li>
+      <li>A 5V to 3.3V <a href="https://www.sparkfun.com/sparkfun-logic-level-converter-bi-directional.html" target="_blank" rel="noopener" style="color: #8FAE97">logic converter</a> for prototyping (I just used this one for the schematic).</li>
       <li><a href="https://github.com/nodemcu" target="_blank" rel="noopener" style="color: #8FAE97">NodeMCU</a> based with a ESP8266 chip.</li>
     </p>
   </section>
 
   <section class="proj-section">
-    <h2>Method</h2>
+      <h2>BART API</h2>
+      <p class="body-copy">
+      The Bay Area Rapid Transit [<a href="https://www.bart.gov/schedules/developers/api" target="_blank" rel="noopener" style="color: #8FAE97">BART</a>]
+       has an amazing site online where all you need to do is apply for a key and you get public access for real-time
+       changes for their public transportation. As long as this applies for any other city this project is 
+       readibly adjustable to other places of public transportation.
+    </p>
+    </section>
+
+  <section class="proj-section">
+    <h2>Firmware</h2>
     <p class="body-copy">
-      Write a short overview of your process here, then use the photos below to walk through
-      the key steps — add a caption under each one explaining what it shows.
+      The main I2C communication between OLED and MCU were provided by the suppliers on their [<a href="https://www.buydisplay.com/spi-white-20x4-character-oled-display-module-for-arduino-raspberry-pi" target="_blank" rel="noopener" style="color: #8FAE97">website</a>] 
+      and all of the code is posted on my github [<a href="https://github.com/Baaazil/Mini-Real-Time-BART-Display" target="_blank" rel="noopener" style="color: #8FAE97">here</a>].
+    </p>
+
+  <section class="proj-section">
+    <h2>Prototype</h2>
+    <p class="body-copy">
+      Following the connection rules given by the OLED supplier and adjusting for using an ESP8266
+      instead of a ESP32 (the supplier assumes for ESP32)
     </p>
     <div class="project-gallery">
       <div class="gallery-step">
@@ -676,6 +693,10 @@
         <p class="step-caption">Explain what this photo shows.</p>
       </div>
       <div class="gallery-step">
+    <p class="body-copy">
+      <h2>Schematic</h2>
+      All of the PCB work was designed in KiCad 
+    </p>
         <div class="gallery-item"><div class="art art-2"><img src="images/project-2-photo-2.png" alt="Project Two photo 2" onerror="this.remove()"></div></div>
         <p class="step-caption">Explain what this photo shows.</p>
       </div>
@@ -710,7 +731,7 @@
       <li><a href="https://www.youtube.com/watch?v=8RiLKnczvxs" target="_blank" rel="noopener">This tutorial</a> was great for understanding the proper usage of decoupling capacitors and pulldown resistors for a USB-TypeC.</li>
       <li>The <a href="https://www.buydisplay.com/spi-white-20x4-character-oled-display-module-for-arduino-raspberry-pi" target="_blank" rel="noopener">OLED Webpage</a> contains datasheets, 3d models, an interfacing guide, and all the code needed to function on a ESP chip.</li>
 
-    </ul>
+      </p>
   </section>
 
   <a class="back-link" href="index.html">&larr; Back to all projects</a>
