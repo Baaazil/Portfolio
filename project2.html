@@ -684,29 +684,55 @@
   <section class="proj-section">
     <h2>Prototype</h2>
     <p class="body-copy">
-      Following the connection rules given by the OLED supplier and adjusting for using an ESP8266
-      instead of a ESP32 (the supplier assumes for ESP32)
+      Following the connection rules given by the OLED supplier and adjusting pins for a ESP8266 
+      as the supplier assumes for ESP32.
     </p>
     <div class="project-gallery">
       <div class="gallery-step">
         <div class="gallery-item"><div class="art art-2"><img src="images/project-2-photo-1.png" alt="Project Two photo 1" onerror="this.remove()"></div></div>
-        <p class="step-caption">Explain what this photo shows.</p>
+        <p class="step-caption">This was the working prototype for the display.</p>
       </div>
-      <div class="gallery-step">
+      <div class="proj-section">
     <p class="body-copy">
       <h2>Schematic</h2>
-      All of the PCB work was designed in KiCad 
+      All of the PCB work was designed using KiCad. I referenced the NodeMCU [<a href="https://github.com/nodemcu" target="_blank" rel="noopener" style="color: #8FAE97">Repository</a>] a lot for understanding the connections and the eventual layout of everything
+    
     </p>
-        <div class="gallery-item"><div class="art art-2"><img src="images/project-2-photo-2.png" alt="Project Two photo 2" onerror="this.remove()"></div></div>
-        <p class="step-caption">Explain what this photo shows.</p>
+        <div class="gallery-item"><div class="art art-2"><img src="images/project-2-photo-2.png" alt="Project Two photo 2" onerror="this.remove()" style="object-position: 50% 45%;"></div></div>
+        <p class="step-caption">This is the USBC 5V input. It uses two pull down resistors and two decoupling capacitors.</p>
       </div>
       <div class="gallery-step">
         <div class="gallery-item"><div class="art art-2"><img src="images/project-2-photo-3.png" alt="Project Two photo 3" onerror="this.remove()"></div></div>
-        <p class="step-caption">Explain what this photo shows.</p>
+        <p class="step-caption">These are the female head pins connections connected through the NodeMCU.</p>
       </div>
       <div class="gallery-step">
+        <div class="gallery-item"><div class="art art-2"><img src="images/project-2-photo-4.png" alt="Project Two photo 4" onerror="this.remove()" style="object-position: 50% 20%;"></div></div>
+        <p class="step-caption">This is the female header pins with the OLED display.</p>
+      </div>
+      <div class="gallery-step">
+        <div class="gallery-item"><div class="art art-2"><img src="images/project-2-photo-5.png" alt="Project Two photo 5" onerror="this.remove()" style="object-position: 50% 25%;"></div></div>
+        <p class="step-caption">This converts the 3.3V ESP logic to the 5V OLED logic and vice-versa.</p>
+      </div>
+    </div>
+    <p class="body-copy">
+      <h2>PCB Design</h2>
+      <div class="gallery-step">
+        <div class="gallery-item"><div class="art art-2"><img src="images/project-2-photo-6.png" alt="Project Two photo 6" onerror="this.remove()" style="object-position: 50% 55%;"></div></div>
+        <p class="step-caption">My final design for the PCB.</p>
+      </div>
+    </div>
+    <p class="body-copy">
+      <h2>Case Design</h2>
+      <div class="gallery-step">
+        <div class="gallery-item"><div class="art art-2"><img src="images/project-2-photo-7.png" alt="Project Two photo 7" onerror="this.remove()" style="object-position: 50% 25%;"></div></div>
+        <p class="step-caption">A modeled design made in Onshape.</p>
+      </div>
+    </div>
+    <p class="body-copy">
+      <h2>Demo</h2>
+      <div class="gallery-step">
         <div class="gallery-item"><div class="art art-2"><video src="images/project-2-video-1.mp4" controls playsinline preload="metadata" onerror="this.remove()">Your browser doesn't support embedded video.</video></div></div>
-        <p class="step-caption">Explain what this video shows.</p>
+        <p class="step-caption">This is the final working design in action.</p>
       </div>
     </div>
   </section>
@@ -714,8 +740,8 @@
   <section class="proj-section">
     <h2>Overview</h2>
     <p class="body-copy">
-      Write a broader overview of the finished project here — what it does, the stack or
-      tools used, and your role in building it.
+      Overall this project was a great learning experience whether it was designing a PCB in KiCAD for the first time,  
+      improving my modeling skills in CAD, or understanding and encoding a MCU through a ESP to display something on and OLED.
     </p>
   </section>
 
@@ -723,14 +749,14 @@
     <h2>Inspiration &amp; Credit</h2>
     <ul class="credit-list">
       <li><a href="https://www.reddit.com/r/esp32/comments/1osvbhn/mini_bart_realtime_arrival_display/" target="_blank" rel="noopener">This reddit post</a> 
-        by u/fil1983 turned out a surprising and helpful find. Their suggestion of display was spot on and it gave me more direction and confidence in this small project.
+        by u/fil1983 turned out a surprising and helpful find. Their suggestion of display was spot on and it gave me a lot of inspiration to do this project.
         </li>
       <li>The <a href="https://www.bart.gov/schedules/developers/gtfs-realtime" target="_blank" rel="noopener">BART GTFS Realtime</a> publically gives out their transit data.</li>
       <li><a href="https://www.etechnophiles.com/nodemcu-esp8266-pinout-specs-board-layout/" target="_blank" rel="noopener">NodeMCU</a> website with a lot of helpful info.</li>
       <li><a href="https://www.etechnophiles.com/nodemcu-esp8266-pinout-specs-board-layout/" target="_blank" rel="noopener">NodeMCU Github</a> was amazing for making models in kicad and for general firmware.</li>
       <li><a href="https://www.youtube.com/watch?v=8RiLKnczvxs" target="_blank" rel="noopener">This tutorial</a> was great for understanding the proper usage of decoupling capacitors and pulldown resistors for a USB-TypeC.</li>
       <li>The <a href="https://www.buydisplay.com/spi-white-20x4-character-oled-display-module-for-arduino-raspberry-pi" target="_blank" rel="noopener">OLED Webpage</a> contains datasheets, 3d models, an interfacing guide, and all the code needed to function on a ESP chip.</li>
-
+      <li>My greatest source of motivation when making this project has to be my brother. He helped me in doing most of the 3d Modeling CAD work and I would have never started this project without his suggestion.</li>
       </p>
   </section>
 
